@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dialog</title>
+
+    <style type="text/css">
+    body { font: 12px Arial;}
+
+path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+    </style>
   </head>
 
   <body>
@@ -16,10 +34,104 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
     <script>
 
-var niklasWasHere =  {
-  timestamp: "2015-09-10T15:17:45.690Z",
-  glucose: 7.9,
-}
+      var dialogJSON = {
+        title: 'hej',
+        id: 123,
+        glucose: [{
+          t: "2015-09-10T15:18:45.690Z",
+          val: 4.9
+        },
+        {
+          t: "2015-09-10T15:19:45.690Z",
+          val: 7.9
+        },
+        {
+          t: "2015-09-10T15:20:45.690Z",
+          val: 9.9
+        },
+        {
+          t: "2015-09-10T15:21:45.690Z",
+          val: 2.9
+        },
+        {
+          t: "2015-09-10T15:22:45.690Z",
+          val: 17.9
+        },
+        {
+          t: "2015-09-10T15:23:45.690Z",
+          val: 32
+        },
+        {
+          t: "2015-09-10T15:24:45.690Z",
+          val: 14.9
+        },
+        {
+          t: "2015-09-10T15:25:45.690Z",
+          val: 5.9
+        }]
+      };
+
+      var margin = {top: 30, right: 20, bottom: 30, left: 50},
+          width = 600 - margin.left - margin.right,
+          height = 270 - margin.top - margin.bottom;
+
+// Parse the date / time
+
+
+// Set the ranges
+var x = d3.time.scale().range([0, width]);
+var y = d3.scale.linear().range([height, 0]);
+
+// Define the axes
+var xAxis = d3.svg.axis().scale(x)
+    .orient('bottom').ticks(5);
+
+var yAxis = d3.svg.axis().scale(y)
+    .orient('left').ticks(5);
+
+// Define the line
+var valueline = d3.svg.line()
+    .x(function(d) { return x(d.t); })
+    .y(function(d) { return y(d.val); });
+    
+// Adds the svg canvas
+var svg = d3.select('#graph-container')
+    .append('svg')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+    .append('g')
+        .attr('transform', 
+              'translate(' + margin.left + ',' + margin.top + ')');
+
+// Get the data
+    dialogJSON.glucose.forEach(function(d) {
+      
+      var datz = new Date(d.t);
+
+        d.t = datz;
+        d.val = +d.val;
+    });
+
+    // Scale the range of the data
+    x.domain(d3.extent(dialogJSON.glucose, function(d) { console.log(d.t); return d.t; }));
+    y.domain([0, 30]);
+
+    // Add the valueline path.
+    svg.append('path')
+        .attr('class', 'line')
+        .attr('d', valueline(dialogJSON.glucose));
+
+    // Add the X Axis
+    svg.append('g')
+        .attr('class', 'x axis')
+        .attr('transform', 'translate(0,' + height + ')')
+        .call(xAxis);
+
+    // Add the Y Axis
+    svg.append('g')
+        .attr('class', 'y axis')
+        .call(yAxis);
+
 
 
     </script>
