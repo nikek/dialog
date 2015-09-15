@@ -1,0 +1,24 @@
+{
+  "name": "dialog",
+  "version": "0.0.1",
+  "description": "Web app - Kontextuella sambad för din diabetes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nikek/dialog.git"
+  },
+  "author": "",
+  "license": "Private",
+  "bugs": {
+    "url": "https://github.com/nikek/dialog/issues"
+  },
+  "homepage": "https://github.com/nikek/dialog",
+  "dependencies": {
+    "express": "^4.13.3",
+    "riot": "^2.2.4",
+    "swig": "^1.4.2"
+  }
+}
