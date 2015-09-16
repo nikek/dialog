@@ -9,6 +9,18 @@
   {% block head %}{% endblock %}
 </head>
 <body>
-  {% block content %}{% endblock %}
+  <header>
+    <a href="/" class="logo">Dialogg</a>
+    <nav>
+      <ul>
+        <li><a href="#">Statisik</a></li>
+        <li><a href="/import/">Import</a></li>
+        <li><a href="#">Inställningar</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
 </body>
 </html>
