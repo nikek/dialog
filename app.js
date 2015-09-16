@@ -35,6 +35,10 @@ app.get('/', function(req, res) {
   res.render('index', { tagContent: tagOutput, firstName: startingName });
 });
 
+app.get('/import/', function(req, res) {
+  res.render('import');
+});
+
 //app.use('/', routes);
 
 // catch 404 and forward to error handler

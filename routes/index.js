@@ -12,4 +12,11 @@ router.get('/', function(req, res) {
   res.render('index', { tagContent: tagOutput, firstName: startingName });
 });
 
+router.get('/import/', function(req, res) {
+  //var startingName = 'Susan';
+  //var tagOutput = riot.render(hello, { firstName: startingName });
+  //res.render('import', { tagContent: tagOutput, firstName: startingName });
+  res.render('import');
+});
+
 module.exports = router;
