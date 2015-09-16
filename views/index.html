@@ -1,17 +1,13 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Dialog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
-    <h1>Hi</h1>
-    {{ tagContent | safe }}
-    <script src="https://cdn.jsdelivr.net/riot/2.2.4/riot.min.js"></script>
-    <script src="tags.js"></script>
-    <script>
-      riot.mount('*', {firstName: '{{firstName}}'});
-    </script>
-  </body>
-</html>
+{% extends 'layout.html' %}
+
+{% block title %}Dialog{% endblock %}
+
+{% block content %}
+<h1>Hi</h1>
+{{ tagContent | safe }}
+<script src="https://cdn.jsdelivr.net/riot/2.2.4/riot.min.js"></script>
+<script src="tags.js"></script>
+<script>
+  riot.mount('*', {firstName: '{{firstName}}'});
+</script>
+{% endblock %}
